@@ -17,10 +17,10 @@ public class pppoopoo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         fwsoighaw
             wazsrgfoauHwaS
             wshazswdlqkw
-            */
+            
     }
 }
