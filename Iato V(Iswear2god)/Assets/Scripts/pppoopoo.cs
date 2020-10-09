@@ -6,17 +6,21 @@ public class pppoopoo : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
-    {aqefWAOEihaws
+    {
+        /*
+        aqefWAOEihaws
             sxdlvfIHW
             aefnwAUj
-        
+        */
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         fwsoighaw
             wazsrgfoauHwaS
             wshazswdlqkw
+            */
     }
 }
