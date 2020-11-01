@@ -68,6 +68,8 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 0, ref SpeedSmoothVelocity, SpeedSmoothTime);
+
+            //Animator.SetFloat("");
         }
 
 
