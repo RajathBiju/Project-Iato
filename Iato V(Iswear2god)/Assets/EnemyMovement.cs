@@ -17,6 +17,10 @@ public class EnemyMovement : MonoBehaviour
     float SpeedSmoothVelocity = 0;
     float SpeedSmoothTime = 0.1f;
 
+    float AttackSpeed;
+    float AttackSmoothVelocity = 0;
+    float AttackSmoothTime = 0.1f;
+
     float AngleBetweenPlayer;
 
     void Awake() { Animator = GetComponent<Animator>(); }
@@ -52,10 +56,17 @@ public class EnemyMovement : MonoBehaviour
             //foreach(Transform n in Player.transform)
 
             //transform.Translate(transform.forward.normalized * Speed, Space.Self);
-            if(Mathf.Abs(Vector3.Distance(Player.transform.position, transform.position)) > 1) transform.position += transform.forward * Speed;
-            
-            WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 1, ref SpeedSmoothVelocity, SpeedSmoothTime);
+            if (Mathf.Abs(Vector3.Distance(Player.transform.position, transform.position)) > 1)
+            {
+                transform.position += transform.forward * Speed;
+            }
+            else
+            {
+                AttackSpeed = Mathf.SmoothDampAngle(AttackSpeed, 1, ref AttackSmoothVelocity, AttackSmoothTime);
+                Animator.SetFloat("AttackBlend", AttackSpeed);
+            }
 
+            WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 1, ref SpeedSmoothVelocity, SpeedSmoothTime);
             Animator.SetFloat("MovementBlend", WalkSpeed);
 
             AngleBetweenPlayer = Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up);
@@ -71,7 +82,6 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 0, ref SpeedSmoothVelocity, SpeedSmoothTime);
-
             Animator.SetFloat("MovementBlend", WalkSpeed);
         }
 
