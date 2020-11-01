@@ -6,7 +6,7 @@ using DG.Tweening;
 public class EnemyMovement : MonoBehaviour
 {
     bool FollowPlayer = false;
-    bool RotationApplied = false;
+    bool RotationApplied = true;
 
     public GameObject Player;
     public float Speed;
@@ -23,9 +23,7 @@ public class EnemyMovement : MonoBehaviour
             FollowPlayer = true;
             Debug.Log("Player found");
 
-            AngleBetweenPlayer = Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up);
-
-            Debug.Log(AngleBetweenPlayer);
+            RotationApplied = false;
         }
     }
 
@@ -34,6 +32,7 @@ public class EnemyMovement : MonoBehaviour
         if (other.tag == "Player")
         {
             FollowPlayer = false;
+            RotationApplied = false;
             Debug.Log("Player lost");
         }
     }
@@ -42,15 +41,23 @@ public class EnemyMovement : MonoBehaviour
     {
         if (FollowPlayer)
         {
-            //transform.Translate(transform.position.normalized * Speed, Space.Self);
+            //foreach(Transform n in Player.transform)
+
+            //transform.Translate(transform.forward.normalized * Speed, Space.Self);
+            if(Mathf.Abs(Vector3.Distance(Player.transform.position, transform.position)) > 1) transform.position += transform.forward * Speed;
             AngleBetweenPlayer = Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up);
 
             //TODO
-            transform.DORotate(new Vector3(0, (transform.eulerAngles.y - AngleBetweenPlayer > 0) ? 180-AngleBetweenPlayer : AngleBetweenPlayer, 0), 1).OnComplete(() => RotationApplied = true);
+            if (!RotationApplied)
+            {
+                Debug.Log(AngleBetweenPlayer);
+                transform.DORotate(new Vector3(0, (transform.eulerAngles.y >= 0) ? transform.eulerAngles.y + AngleBetweenPlayer : transform.eulerAngles.y - AngleBetweenPlayer, 0), 3);//.OnComplete(() => RotationApplied = false);
+            }
+            //RotationApplied = true;
         }
 
 
         Debug.DrawRay(transform.position , Vector3.Normalize(Player.transform.position - transform.position) * 100, Color.red);
-        Debug.Log(Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up));
+        //Debug.Log(Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up));
     }
 }
