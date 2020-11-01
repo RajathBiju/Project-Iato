@@ -8,10 +8,18 @@ public class EnemyMovement : MonoBehaviour
     bool FollowPlayer = false;
     bool RotationApplied = true;
 
+    Animator Animator;
+
     public GameObject Player;
     public float Speed;
 
+    float WalkSpeed;
+    float SpeedSmoothVelocity = 0;
+    float SpeedSmoothTime = 0.1f;
+
     float AngleBetweenPlayer;
+
+    void Awake() { Animator = GetComponent<Animator>(); }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -45,6 +53,8 @@ public class EnemyMovement : MonoBehaviour
 
             //transform.Translate(transform.forward.normalized * Speed, Space.Self);
             if(Mathf.Abs(Vector3.Distance(Player.transform.position, transform.position)) > 1) transform.position += transform.forward * Speed;
+            
+            WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 1, ref SpeedSmoothVelocity, SpeedSmoothTime);
             AngleBetweenPlayer = Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up);
 
             //TODO
@@ -54,6 +64,10 @@ public class EnemyMovement : MonoBehaviour
                 transform.DORotate(new Vector3(0, (transform.eulerAngles.y >= 0) ? transform.eulerAngles.y + AngleBetweenPlayer : transform.eulerAngles.y - AngleBetweenPlayer, 0), 3);//.OnComplete(() => RotationApplied = false);
             }
             //RotationApplied = true;
+        }
+        else
+        {
+            WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 0, ref SpeedSmoothVelocity, SpeedSmoothTime);
         }
 
 
