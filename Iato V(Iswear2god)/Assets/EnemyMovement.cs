@@ -55,6 +55,9 @@ public class EnemyMovement : MonoBehaviour
             if(Mathf.Abs(Vector3.Distance(Player.transform.position, transform.position)) > 1) transform.position += transform.forward * Speed;
             
             WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 1, ref SpeedSmoothVelocity, SpeedSmoothTime);
+
+            Animator.SetFloat("MovementBlend", WalkSpeed);
+
             AngleBetweenPlayer = Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up);
 
             //TODO
@@ -69,7 +72,7 @@ public class EnemyMovement : MonoBehaviour
         {
             WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 0, ref SpeedSmoothVelocity, SpeedSmoothTime);
 
-            //Animator.SetFloat("");
+            Animator.SetFloat("MovementBlend", WalkSpeed);
         }
 
 
