@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     bool FollowPlayer = false;
     bool RotationApplied = true;
+    bool InAttackRange = false;
 
     Animator Animator;
 
@@ -49,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (FollowPlayer)
         {
@@ -59,15 +60,26 @@ public class EnemyMovement : MonoBehaviour
             if (Mathf.Abs(Vector3.Distance(Player.transform.position, transform.position)) > 1)
             {
                 transform.position += transform.forward * Speed;
+                InAttackRange = false;
             }
             else
             {
+                InAttackRange = true;
+            }
+
+            if (!InAttackRange)
+            {
+                WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 1, ref SpeedSmoothVelocity, SpeedSmoothTime);
+                Animator.SetFloat("MovementBlend", WalkSpeed);
+            }
+            else
+            {
+                WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 0, ref SpeedSmoothVelocity, SpeedSmoothTime);
+                Animator.SetFloat("MovementBlend", WalkSpeed);
+
                 AttackSpeed = Mathf.SmoothDampAngle(AttackSpeed, 1, ref AttackSmoothVelocity, AttackSmoothTime);
                 Animator.SetFloat("AttackBlend", AttackSpeed);
             }
-
-            WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 1, ref SpeedSmoothVelocity, SpeedSmoothTime);
-            Animator.SetFloat("MovementBlend", WalkSpeed);
 
             AngleBetweenPlayer = Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up);
 
