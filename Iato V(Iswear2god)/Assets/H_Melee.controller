@@ -33,7 +33,7 @@ BlendTree:
     m_DirectBlendParameter: MovementBlend
     m_Mirror: 0
   m_BlendParameter: MovementBlend
-  m_BlendParameterY: AttackFloat
+  m_BlendParameterY: AttackBlend
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -80,7 +80,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: AttackFloat
+  - m_Name: AttackBlend
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0

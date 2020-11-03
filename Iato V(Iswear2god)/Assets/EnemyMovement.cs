@@ -5,9 +5,9 @@ using DG.Tweening;
 
 public class EnemyMovement : MonoBehaviour
 {
-    bool FollowPlayer = false;
+    public bool FollowPlayer = false;
     bool RotationApplied = true;
-    bool InAttackRange = false;
+    public bool InAttackRange = false;
 
     Animator Animator;
 
@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
         {
             Player = other.gameObject;
             FollowPlayer = true;
-            Debug.Log("Player found");
+            //Debug.Log("Player found");
 
             RotationApplied = false;
         }
@@ -44,9 +44,11 @@ public class EnemyMovement : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Debug.Log("What Left - " + other.name);
             FollowPlayer = false;
             RotationApplied = false;
-            Debug.Log("Player lost");
+            InAttackRange = false;
+            //Debug.Log("Player lost");
         }
     }
 
@@ -57,13 +59,14 @@ public class EnemyMovement : MonoBehaviour
             //foreach(Transform n in Player.transform)
 
             //transform.Translate(transform.forward.normalized * Speed, Space.Self);
-            if (Mathf.Abs(Vector3.Distance(Player.transform.position, transform.position)) > 1)
+            if (Mathf.Abs(Vector3.Distance(Player.transform.position, transform.position)) > 1f)
             {
                 transform.position += transform.forward * Speed;
                 InAttackRange = false;
             }
             else
             {
+                Debug.Log("In Attack Range");
                 InAttackRange = true;
             }
 
@@ -71,6 +74,9 @@ public class EnemyMovement : MonoBehaviour
             {
                 WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 1, ref SpeedSmoothVelocity, SpeedSmoothTime);
                 Animator.SetFloat("MovementBlend", WalkSpeed);
+
+                AttackSpeed = Mathf.SmoothDampAngle(AttackSpeed, 0, ref AttackSmoothVelocity, AttackSmoothTime);
+                Animator.SetFloat("AttackBlend", AttackSpeed);
             }
             else
             {
@@ -86,7 +92,6 @@ public class EnemyMovement : MonoBehaviour
             //TODO
             if (!RotationApplied)
             {
-                Debug.Log(AngleBetweenPlayer);
                 transform.DORotate(new Vector3(0, (transform.eulerAngles.y >= 0) ? transform.eulerAngles.y + AngleBetweenPlayer : transform.eulerAngles.y - AngleBetweenPlayer, 0), 3);//.OnComplete(() => RotationApplied = false);
             }
             //RotationApplied = true;
@@ -95,10 +100,13 @@ public class EnemyMovement : MonoBehaviour
         {
             WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 0, ref SpeedSmoothVelocity, SpeedSmoothTime);
             Animator.SetFloat("MovementBlend", WalkSpeed);
+
+            AttackSpeed = Mathf.SmoothDampAngle(AttackSpeed, 0, ref AttackSmoothVelocity, AttackSmoothTime);
+            Animator.SetFloat("AttackBlend", AttackSpeed);
         }
 
 
-        Debug.DrawRay(transform.position , Vector3.Normalize(Player.transform.position - transform.position) * 100, Color.red);
+        //Debug.DrawRay(transform.position , Vector3.Normalize(Player.transform.position - transform.position) * 100, Color.red);
         //Debug.Log(Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up));
     }
 }
