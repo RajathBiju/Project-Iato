@@ -1,26 +1,11 @@
 fileFormatVersion: 2
-guid: 14b4fff31cb38ab4c98db6784a72e1e9
+guid: 9c5c9ab861fcfec4a8a87fcf75362010
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: -5327146301766783730
-    second: Armature.001|Fight Idle
-  - first:
-      74: 588187346730859841
-    second: Armature.001|Getting_hit1
-  - first:
-      74: 4699274299699868179
-    second: Armature.001|Idle
-  - first:
-      74: -1723113439997696812
-    second: Armature.001|Punch
-  - first:
-      74: -2969036542940970518
-    second: Armature.001|Run
-  - first:
-      74: -448239265334008587
-    second: Armature.001|Walk
+      74: -1422011007694221501
+    second: Armature|ArmatureAction.001
   externalObjects: {}
   materials:
     materialImportMode: 1
