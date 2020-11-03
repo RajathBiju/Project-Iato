@@ -81,7 +81,9 @@ public class Movement : MonoBehaviour
         float animSpeedPercent = ((Running) ? (CurrentSpeed / RunSpeed) : (CurrentSpeed / WalkSpeed) * 0.5f) * InputDir.magnitude;
 
         Animator.SetFloat("MovementBlend", animSpeedPercent, SpeedSmoothTime, Time.deltaTime);
-        Debug.Log(animSpeedPercent);
+        //Debug.Log(animSpeedPercent);
+
+        Debug.DrawRay(transform.position, transform.forward.normalized * 100, Color.blue);
     }
 
     private void Jump()
