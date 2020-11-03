@@ -22,6 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: sharp_blue
   m_Shader: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
+<<<<<<< HEAD
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -29,6 +30,14 @@ Material:
   m_CustomRenderQueue: 3050
   stringTagMap:
     RenderType: Transparent
+=======
+  m_ShaderKeywords: _EMISSION _FLIPBOOKBLENDING_OFF
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+>>>>>>> c9b8d7fbc2253a6f999257fbe72a9c1aced7da72
   disabledShaderPasses:
   - ALWAYS
   - SHADOWCASTER
