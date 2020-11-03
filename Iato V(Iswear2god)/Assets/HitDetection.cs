@@ -7,6 +7,8 @@ public class HitDetection : MonoBehaviour
     public GameObject Cube1, Cube2;
     public EnemyMovement Movement;
 
+    public GameObject PunchHeavy, PunchMid, PunchLight;
+
     /*w2private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "AttackNode")
@@ -20,9 +22,21 @@ public class HitDetection : MonoBehaviour
         Movement = GetComponent<EnemyMovement>();
     }
 
-    public void HIT()
+    public void HITHand1()
     {
-        if(Movement.InAttackRange)
-        Debug.Log("Hit");
+        if (Movement.InAttackRange)
+        {
+            Debug.Log("Hit");
+            Destroy(Instantiate(PunchMid, Cube1.transform.position, transform.rotation), 1.5f);
+        }
+    }
+
+    public void HITHand2()
+    {
+        if (Movement.InAttackRange)
+        {
+            Debug.Log("Hit");
+            Destroy(Instantiate(PunchMid, Cube2.transform.position, transform.rotation), 1.5f);
+        }
     }
 }
