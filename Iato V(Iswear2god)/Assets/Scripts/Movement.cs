@@ -29,6 +29,8 @@ public class Movement : MonoBehaviour
     Animator Animator;
     public CharacterController Controller;
 
+    Vector2 CameraPosition;
+
     private void Start()
     {
         Animator = GetComponent<Animator>();
@@ -37,28 +39,22 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        //raw input and InputDir get declared and assigned a value
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         Vector2 InputDir = input.normalized;
-
-        Vector2 CameraPosition;
-
+        
+        //Gravity is defined and kept in update so that testing it with different values is possible [CAN BE MOVED]
         Gravity = -(2 * JumpHeight) / Mathf.Pow(TimeToReachGround, 2);
 
+        //Camera position is assigned each frame so that once moved using the Right Stick of the controller and the movement rotation is applied on the main character
         CameraPosition = new Vector2(Camera.transform.forward.x, Camera.transform.forward.z);
-
-        //Debug.DrawRay(Camera.transform.position, Camera.transform.forward * 10, Color.red);
         float roattion = Mathf.Atan2(CameraPosition.x, CameraPosition.y) * Mathf.Rad2Deg;
-
-        float n = Vector2.Dot(Vector2.up, CameraPosition);
-        float m = Mathf.Sqrt(CameraPosition.x * CameraPosition.x + CameraPosition.y * CameraPosition.y);        
-        float Angle = Mathf.Acos(n / m);
+        
 
         if (InputDir != Vector2.zero)
         {
             float TargetRotation = Mathf.Atan2(InputDir.x, InputDir.y) * Mathf.Rad2Deg + roattion;
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetRotation, ref TurnSmoothVelocity, GetModifiedSmoothTime(TurnSmoothTime));
-
-            //Debug.Log(Mathf.Atan2() * Mathf.Rad2Deg);
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -66,23 +62,28 @@ public class Movement : MonoBehaviour
             Jump(); // 2s/t^2 = g
         }
 
+
+        //The script checks if the player pressed the 'Fire1' or A button on the controller and if he did the 'Running' boolean is made true and the 'TargetSpeed' is increased
         bool Running = (Input.GetAxisRaw("Fire1") == 1.0f) && (Mathf.Abs(input.x) >= 0.5f || Mathf.Abs(input.y) >= 0.5f);
         float TargetSpeed = (Running) ? RunSpeed : WalkSpeed * InputDir.magnitude;
         CurrentSpeed = Mathf.SmoothDampAngle(CurrentSpeed, TargetSpeed, ref SpeedSmoothVelocity, GetModifiedSmoothTime(SpeedSmoothTime));
 
+        //Gravity and any force in the Y direction is taken into account and then moved
         VelocityY += Time.deltaTime * Gravity;
         Vector3 Velocity = transform.forward * CurrentSpeed + Vector3.up * VelocityY;
 
+        //Using the Character Controller the gameobject is moved in the XZ plane
         Controller.Move(Velocity * Time.deltaTime);
         CurrentSpeed = new Vector2(Controller.velocity.x, Controller.velocity.z).magnitude;
 
+        //The velocity in Y direction is Zeroed out so that when the player is standing still the Y velocity doesn't increase indefinietly 
         if (Controller.isGrounded) VelocityY = 0;
 
+        //According the speed in X direction the animations blend speed is increased
         float animSpeedPercent = ((Running) ? (CurrentSpeed / RunSpeed) : (CurrentSpeed / WalkSpeed) * 0.5f) * InputDir.magnitude;
-
         Animator.SetFloat("MovementBlend", animSpeedPercent, SpeedSmoothTime, Time.deltaTime);
-        //Debug.Log(animSpeedPercent);
 
+        //A DrawRay function to mark the forward direction for the player
         Debug.DrawRay(transform.position, transform.forward.normalized * 100, Color.blue);
     }
 
@@ -147,6 +148,11 @@ public class PlayerController : MonoBehaviour
         Vector2 InputDir = input.normalized;
 
         Gravity = -(2 * JumpHeight) / Mathf.Pow(TimeToReachGround, 2);
+        
+        float n = Vector2.Dot(Vector2.up, CameraPosition);
+        float m = Mathf.Sqrt(CameraPosition.x * CameraPosition.x + CameraPosition.y * CameraPosition.y);        
+        float Angle = Mathf.Acos(n / m);
+        
 
         if(InputDir != Vector2.zero)
         {
