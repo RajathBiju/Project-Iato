@@ -3,20 +3,104 @@ guid: 74ee43e1b55746943b61b6c122704d0a
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Beads.002
+    second: {fileID: 2100000, guid: c885cb0fffc329d46bbfd3b1a3e25f30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Belt Knot 2.002
+    second: {fileID: 2100000, guid: b04b40d854ce6d546b7323e1e5aada92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Belt Knot 3.002
+    second: {fileID: 2100000, guid: 29c74841f401ff344bacf18d9ea3edde, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Belt Knot1.002
+    second: {fileID: 2100000, guid: 35af88d07cbd27548a56d156fa003966, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Belt Main.002
+    second: {fileID: 2100000, guid: 61eebbaddc9cfb049abb25ca54e0e72f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body.001
+    second: {fileID: 2100000, guid: 594421eac07e77f4ba409ded4d6eea25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyebrows.001
+    second: {fileID: 2100000, guid: 00a2cfb555d3b1040a17cb9ec9134291, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes.001
+    second: {fileID: 2100000, guid: 54a9e89420fdfe745a3c2a02be5c6663, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Face.001
+    second: {fileID: 2100000, guid: f52391c127707734aa25fa2b744f332c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hair.001
+    second: {fileID: 2100000, guid: 04d27ce7a30e2be4f9bbeaf04f8e5610, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hat.002
+    second: {fileID: 2100000, guid: 7b1496a420a952a45ad2c44366f6769e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left Leg Straps.002
+    second: {fileID: 2100000, guid: 8e2c20b6a77e8ac459b41dcdb1c5fe7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pants.002
+    second: {fileID: 2100000, guid: d923792b2ae0847409c13c9476c8f7f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Right Hand .002
+    second: {fileID: 2100000, guid: e364967d731271342816d5ddae687738, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Right LEg.002
+    second: {fileID: 2100000, guid: 469af091bac505848b1917b54a42b3bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Top Shirt.002
+    second: {fileID: 2100000, guid: 067fe49bbd38b7041835e0896986ac23, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Waist Straps.002
+    second: {fileID: 2100000, guid: dd5a82ee55e22dd468f583f7fa87218f, type: 2}
   materials:
-    materialImportMode: 1
-    materialName: 0
+    materialImportMode: 2
+    materialName: 2
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: "Avatar creation failed:\n\tTransform 'Armature.001' not found
-      in HumanDescription.\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
