@@ -72,19 +72,11 @@ public class EnemyMovement : MonoBehaviour
 
             if (!InAttackRange)
             {
-                WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 1, ref SpeedSmoothVelocity, SpeedSmoothTime);
-                Animator.SetFloat("MovementBlend", WalkSpeed);
-
-                AttackSpeed = Mathf.SmoothDampAngle(AttackSpeed, 0, ref AttackSmoothVelocity, AttackSmoothTime);
-                Animator.SetFloat("AttackBlend", AttackSpeed);
+                SetWalkRunSpeed(1, 0);
             }
             else
             {
-                WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 0, ref SpeedSmoothVelocity, SpeedSmoothTime);
-                Animator.SetFloat("MovementBlend", WalkSpeed);
-
-                AttackSpeed = Mathf.SmoothDampAngle(AttackSpeed, 1, ref AttackSmoothVelocity, AttackSmoothTime);
-                Animator.SetFloat("AttackBlend", AttackSpeed);
+                SetWalkRunSpeed(0, 1);
             }
 
             AngleBetweenPlayer = Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up);
@@ -98,15 +90,20 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, 0, ref SpeedSmoothVelocity, SpeedSmoothTime);
-            Animator.SetFloat("MovementBlend", WalkSpeed);
-
-            AttackSpeed = Mathf.SmoothDampAngle(AttackSpeed, 0, ref AttackSmoothVelocity, AttackSmoothTime);
-            Animator.SetFloat("AttackBlend", AttackSpeed);
+            SetWalkRunSpeed(0, 0);
         }
 
 
         //Debug.DrawRay(transform.position , Vector3.Normalize(Player.transform.position - transform.position) * 100, Color.red);
         //Debug.Log(Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up));
+    }
+
+    private void SetWalkRunSpeed(float WalkSpeed, float RunSpeed)
+    {
+        WalkSpeed = Mathf.SmoothDampAngle(WalkSpeed, WalkSpeed, ref SpeedSmoothVelocity, SpeedSmoothTime);
+        Animator.SetFloat("MovementBlend", WalkSpeed);
+
+        AttackSpeed = Mathf.SmoothDampAngle(AttackSpeed, RunSpeed, ref AttackSmoothVelocity, AttackSmoothTime);
+        Animator.SetFloat("AttackBlend", AttackSpeed);
     }
 }
