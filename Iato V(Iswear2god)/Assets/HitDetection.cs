@@ -24,18 +24,18 @@ public class HitDetection : MonoBehaviour
 
     public void HITHand1()
     {
-        if (Movement.InAttackRange)
+        if (Movement.InAttackRange && (Movement.AngleBetweenPlayer < 15f && Movement.AngleBetweenPlayer > -15f))
         {
-            Debug.Log("Hit");
+            Debug.Log(Movement.AngleBetweenPlayer);
             Destroy(Instantiate(PunchMid, Cube1.transform.position, transform.rotation), 1.5f);
         }
     }
 
     public void HITHand2()
     {
-        if (Movement.InAttackRange)
+        if (Movement.InAttackRange && (Movement.AngleBetweenPlayer < 15f && Movement.AngleBetweenPlayer > -15f))
         {
-            Debug.Log("Hit");
+            Debug.Log(Movement.AngleBetweenPlayer);
             Destroy(Instantiate(PunchMid, Cube2.transform.position, transform.rotation), 1.5f);
         }
     }

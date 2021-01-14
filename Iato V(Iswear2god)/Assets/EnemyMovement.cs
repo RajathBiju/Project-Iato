@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     public bool FollowPlayer = false;
     bool RotationApplied = true;
     public bool InAttackRange = false;
+    public bool InTurnRange = false;
 
     Animator Animator;
 
@@ -22,7 +23,7 @@ public class EnemyMovement : MonoBehaviour
     float AttackSmoothVelocity = 0;
     float AttackSmoothTime = 0.1f;
 
-    float AngleBetweenPlayer;
+    public float AngleBetweenPlayer;
 
     void Awake() { Animator = GetComponent<Animator>(); }
 
@@ -56,9 +57,6 @@ public class EnemyMovement : MonoBehaviour
     {
         if (FollowPlayer)
         {
-            //foreach(Transform n in Player.transform)
-
-            //transform.Translate(transform.forward.normalized * Speed, Space.Self);
             if (Mathf.Abs(Vector3.Distance(Player.transform.position, transform.position)) > 1f)
             {
                 transform.position += transform.forward * Speed;
@@ -80,13 +78,11 @@ public class EnemyMovement : MonoBehaviour
             }
 
             AngleBetweenPlayer = Vector3.SignedAngle(transform.forward.normalized, Vector3.Normalize(Player.transform.position - transform.position), Vector3.up);
-
-            //TODO
+            
             if (!RotationApplied)
             {
                 transform.DORotate(new Vector3(0, (transform.eulerAngles.y >= 0) ? transform.eulerAngles.y + AngleBetweenPlayer : transform.eulerAngles.y - AngleBetweenPlayer, 0), 3);//.OnComplete(() => RotationApplied = false);
             }
-            //RotationApplied = true;
         }
         else
         {
