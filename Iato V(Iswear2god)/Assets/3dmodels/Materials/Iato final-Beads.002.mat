@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Iato final-Beads.002
-  m_Shader: {fileID: -6465566751694194690, guid: 2137c73b8ddb2df49956a2410b9801b2,
+  m_Shader: {fileID: -6465566751694194690, guid: 8b0ea938cb625d9408548855bda02765,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,6 +33,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_5A4A3458:
+        m_Texture: {fileID: 2800000, guid: a50d119df24e0234ea26441d6f1f712e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_7A2D8379:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -70,6 +74,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_2AAB9321: 0
+    - Vector1_AF735754: 0.123
+    - Vector1_C342A98C: -0.2
+    - Vector1_C7B80051: 0.304
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -96,6 +104,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_1786AAE4: {r: 0.9811321, g: 0.96724814, b: 0.96724814, a: 0}
+    - Color_3624DF04: {r: 0.8207547, g: 0.68878263, b: 0.60008013, a: 0}
     - Color_62FCE31A: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 0.9063317, g: 0.9063317, b: 0.9063317, a: 1}
     - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
