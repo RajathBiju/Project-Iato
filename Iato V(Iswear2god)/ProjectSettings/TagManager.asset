@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Missile
   - AttackNode
+  - Parabola Root
   layers:
   - Default
   - TransparentFX

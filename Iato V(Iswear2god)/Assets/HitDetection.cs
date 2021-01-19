@@ -17,9 +17,37 @@ public class HitDetection : MonoBehaviour
         }
     }*/
 
+    public int N = 0;
     private void Awake()
     {
         Movement = GetComponent<EnemyMovement>();
+
+        bool reversing = false;
+        string str = "";
+        int i = 1;
+        while(i <= N*2-1 && i > 0)
+        {
+            if (!reversing)
+            {
+                str = "";
+
+                for (int j = 0; j < i; j++) { str += "*"; }
+                Debug.Log(str);
+
+                if (i >= N) reversing = true;
+                else i++;
+            }
+            else
+            {
+                str = "";
+                i--;
+                if (i > 0)
+                {
+                    for (int j = 0; j < i; j++) { str += "*"; }
+                    Debug.Log(str);
+                }
+            }
+        }
     }
 
     public void HITHand1()
